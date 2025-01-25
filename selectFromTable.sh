@@ -12,12 +12,12 @@ function select_from_table() {
                 column -t -s ',' "$HOME/.Database/$dbName/$TableName.txt"
                 ;;
             2)
-                # Extract column names from the header row
+                
                 IFS=',' read -ra Columns <<< "$(head -n 1 "$HOME/.Database/$dbName/$TableName.txt")"
                 echo "Columns Available: ${Columns[*]}"
                 read -r -p "Enter the column name to select: " ColumnName
                 
-                # Find the column index
+                
                 ColumnIndex=-1
                 for i in "${!Columns[@]}"; do
                     if [[ ${Columns[i]} == "$ColumnName" ]]; then
@@ -30,7 +30,7 @@ function select_from_table() {
                     echo "Error: Column '$ColumnName' does not exist"
                 else
                     echo "Data from Column '$ColumnName':"
-                    # Display the selected column, including the header
+                    
                     awk -F',' -v col=$((ColumnIndex + 1)) '{print $col}' "$HOME/.Database/$dbName/$TableName.txt"
                 fi
                 ;;

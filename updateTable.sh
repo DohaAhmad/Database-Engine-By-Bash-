@@ -51,7 +51,7 @@ function updateTable() {
 
     read -r -p "Enter the Value for the Condition: " condition_value
 
-    # Update the data file
+    
     awk -F',' -v col_index="$column_index" -v cond_index="$condition_index" \
         -v cond_value="$condition_value" -v new_value="$column_value" \
         'BEGIN { OFS = "," } 
